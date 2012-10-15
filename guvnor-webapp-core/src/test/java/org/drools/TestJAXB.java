@@ -40,55 +40,9 @@ public class TestJAXB {
 
         System.out.println(newEntry.getAnyOther());
 
-    }
+        newEntry = (Entry) unmarshaller.unmarshal(new StringBufferInputStream("<entry xmlns=\"http://www.w3.org/2005/Atom\"><title type=\"text\">testCreatePackageFromAtom1</title><summary type=\"text\">desc for testCreatePackageFromAtom</summary><metadata xmlns=\"\"><categories><value>AssetPackageResourceTestCategory</value></categories></metadata></entry>\n"));
 
-//    @Path("/")
-//    public static class EntryResource {
-//
-//        @POST
-//        @Path("entry")
-//        @Consumes(MediaType.APPLICATION_ATOM_XML)
-//        @Produces(MediaType.APPLICATION_ATOM_XML)
-//        public AtomAssetMetadata createAssetFromAtom(Entry entry) {
-//            try {
-//                Class[] classes = new Class[]{AtomAssetMetadata.class, Entry.class};
-//                JAXBContext jaxbContext = JAXBContext.newInstance(classes);
-//
-//                Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-//
-//                Entry newEntry = (Entry) unmarshaller.unmarshal(new StringBufferInputStream("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><atom:entry xmlns:atom=\"http://www.w3.org/2005/Atom\"><atom:title>testCreatePackageFromAtom1</atom:title><atom:summary>desc for testCreatePackageFromAtom</atom:summary><metadata><categories><value>AssetPackageResourceTestCategory</value></categories><note><value>meta</value></note></metadata></atom:entry>\n"));
-//
-//                AtomAssetMetadata assetMetadata = (AtomAssetMetadata) entry.getAnyOther();
-//                return assetMetadata;
-//            } catch (Exception e) {
-//                throw new WebApplicationException(e);
-//            }
-//        }
-//    }
-//
-//    protected ResteasyDeployment deployment;
-//
-//    @Before
-//    public void before() throws Exception {
-//        deployment = EmbeddedContainer.start();
-//        deployment.getRegistry().addPerRequestResource(EntryResource.class);
-//    }
-//
-//    @After
-//    public void after() throws Exception {
-//        EmbeddedContainer.stop();
-//        deployment = null;
-//    }
-//
-//
-//    @Test
-//    public void test() throws Exception
-//    {
-//       ClientRequest request = new ClientRequest("http://localhost:8081/entry");
-//        Thread.sleep(100000);
-//       ClientResponse<AtomAssetMetadata> response = request.get(AtomAssetMetadata.class);
-//       System.out.println("Received first response: " + response.getEntity());
-//
-//    }
+        System.out.println(newEntry.getAnyOther());
+    }
 
 }
